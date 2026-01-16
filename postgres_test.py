@@ -9,13 +9,13 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-cur.execute ("""
-    INSERT INTO users (id, name, email) VALUES (%s, %s, %s)""", (1, "Roma", "yatsykovich@gmail.com"))
+cur.execute("""
+    INSERT INTO users (name, email) VALUES (%s, %s)
+""", ("Roma", "yatsykovich@gmail.com"))
 
 conn.commit()
 
-# select 
-cur.execute("SELECT * FROM users;")
+cur.execute("SELECT id, name, email, created_at FROM users")
 rows = cur.fetchall()
 
 print("Users table content:")
